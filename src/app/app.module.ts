@@ -1,22 +1,23 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms'
-
 import { AppComponent } from './app.component';
-import { ProductListComponent } from './product/product-list.component';
-import { CharToSpacePipe } from './shared/CharToSpace.pipe';
+import { HttpClientModule } from '@angular/common/http';
+import { WelcomeComponent } from './home/welcome.component';
+import { ProductModule } from './product/product.module';
+import { AppRouterModule } from './app-router.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductListComponent,
-    CharToSpacePipe
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    HttpClientModule,
+    ProductModule,
+    AppRouterModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,15 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { IProduct } from './product';
 import { ProductService } from './product.service';
-
-//import { IProduct } from './product';
-//import { ProductService } from './product.service';
+import { Observable, range } from  'rxjs';
+import {map, filter} from 'rxjs/operators';
 
 @Component({
-    selector: 'pm-products',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css'],
-  providers: [ProductService]
 })
 export class ProductListComponent implements OnInit {
   pageTitle = 'Product List';
@@ -47,15 +44,12 @@ export class ProductListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-      this.products = this.productService.getProducts();
-      this.filteredProducts = this.products;
-
-//    this.productService.getProducts().subscribe({
-//      next: products => {
-//        this.products = products;
-//        this.filteredProducts = this.products;
-//      },
-//      error: err => this.errorMessage = err
-//    });
+      this.productService.getProducts().subscribe({
+        next: prods => {
+          this.products = prods;
+          this.filteredProducts = prods;
+        },
+        error: err => this.errorMessage = err
+      });
   }
 }
